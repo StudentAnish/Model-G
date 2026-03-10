@@ -13,13 +13,28 @@ struct ContentView: View {
             Text("🐙").font(.system(size: 200))
                 .shadow(color: .primary, radius: 10)
             
-            Text("Enter your top 3").font(.largeTitle)
+            Text("Level: 3").font(.largeTitle)
             
-            Text("1. __________________________")
-            Text("2. __________________________")
-            Text("3. __________________________")
+            Top3MissionRowView(number: 1)
+            Top3MissionRowView(number: 2)
+            Top3MissionRowView(number: 3)
+            
         }
         .padding()
+    }
+}
+
+struct Top3MissionRowView: View {
+    
+    @State var missionName: String = ""
+    var number: Int
+    
+    var body: some View{
+        HStack{
+            Image(systemName: "\(number).circle")
+                .font(.system(size: 20))
+            TextField("enter your mission", text: $missionName)
+        }
     }
 }
 

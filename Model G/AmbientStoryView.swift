@@ -9,16 +9,21 @@ import SwiftUI
 
 struct AmbientStoryView: View {
     var body: some View {
-        VStack(spacing: 100){
+        ZStack{
             Image(systemName: "square.split.diagonal.2x2")
-            Text("Story Text")
-            Button{
+                .scaledToFill()
+            
+            VStack(spacing: 100){
                 
-            } label: {
-                Image(systemName: "arrowshape.turn.up.right.fill")
-                    .scaleEffect(y: -1)
+                Text("Story Text")
+                Button{
+                    
+                } label: {
+                    Image(systemName: "arrowshape.turn.up.right.fill")
+                        .scaleEffect(y: -1)
+                }
             }
-        }
+        }.frame(width: .infinity, height: .infinity)
     }
 }
 

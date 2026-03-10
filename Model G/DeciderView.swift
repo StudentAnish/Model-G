@@ -12,13 +12,11 @@ struct DeciderView: View {
         VStack{
             Text("xLyfe")
                 .font(.system(size: 100))
-                .padding()
-            Text("presents")
-            
-            Spacer()
-            
+                .padding(.bottom, 200)
+            //Text("presents")
+                        
             Button("Initiate Onboarding"){}.padding()
-            Button("Go to Main"){}.padding()
+            Button("Go to Main Page"){}.padding()
         }.padding()
     }
 }
