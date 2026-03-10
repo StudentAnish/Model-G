@@ -16,14 +16,21 @@ struct AmbientStoryView: View {
             VStack(spacing: 100){
                 
                 Text("Story Text")
+                
+                
                 Button{
                     
                 } label: {
+                    
+                }
+                
+                NavigationLink(destination: ContentView()){
                     Image(systemName: "arrowshape.turn.up.right.fill")
                         .scaleEffect(y: -1)
                 }
             }
         }.frame(width: .infinity, height: .infinity)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

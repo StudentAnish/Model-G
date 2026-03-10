@@ -9,15 +9,22 @@ import SwiftUI
 
 struct DeciderView: View {
     var body: some View {
-        VStack{
-            Text("xLyfe")
-                .font(.system(size: 100))
-                .padding(.bottom, 200)
-            //Text("presents")
+        NavigationStack{
+            VStack{
+                Text("xLyfe")
+                    .font(.system(size: 100))
+                    .padding(.bottom, 200)
+                //Text("presents")
+                
+                NavigationLink(destination: AmbientStoryView()){
+                    Text("Initiate Onboarding").padding()
                         
-            Button("Initiate Onboarding"){}.padding()
-            Button("Go to Main Page"){}.padding()
-        }.padding()
+                }
+                NavigationLink(destination: ContentView()){
+                    Text("Go to Main Page").padding()
+                }
+            }.padding()
+        }
     }
 }
 
