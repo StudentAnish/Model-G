@@ -11,7 +11,8 @@ import SwiftUI
 struct Model_GApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            DeciderView()
         }
     }
 }

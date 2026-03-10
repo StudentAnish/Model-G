@@ -14,6 +14,11 @@
 		B15A254C2F60254100F86455 /* Model_GTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A254B2F60254100F86455 /* Model_GTests.swift */; };
 		B15A25562F60254100F86455 /* Model_GUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A25552F60254100F86455 /* Model_GUITests.swift */; };
 		B15A25582F60254100F86455 /* Model_GUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A25572F60254100F86455 /* Model_GUITestsLaunchTests.swift */; };
+		B15A25692F60298200F86455 /* LaunchScreenTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15A25682F60298200F86455 /* LaunchScreenTest.storyboard */; };
+		B15A256B2F60299900F86455 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A256A2F60299900F86455 /* SplashScreenView.swift */; };
+		B15A256D2F6029B400F86455 /* AmbientStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A256C2F6029B400F86455 /* AmbientStoryView.swift */; };
+		B15A256F2F6029E000F86455 /* DeciderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A256E2F6029E000F86455 /* DeciderView.swift */; };
+		B15A25712F602C6A00F86455 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A25702F602C6A00F86455 /* CongratsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		B15A25512F60254100F86455 /* Model GUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Model GUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15A25552F60254100F86455 /* Model_GUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model_GUITests.swift; sourceTree = "<group>"; };
 		B15A25572F60254100F86455 /* Model_GUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model_GUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B15A25682F60298200F86455 /* LaunchScreenTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenTest.storyboard; sourceTree = "<group>"; };
+		B15A256A2F60299900F86455 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		B15A256C2F6029B400F86455 /* AmbientStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientStoryView.swift; sourceTree = "<group>"; };
+		B15A256E2F6029E000F86455 /* DeciderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeciderView.swift; sourceTree = "<group>"; };
+		B15A25702F602C6A00F86455 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +106,11 @@
 			children = (
 				B15A253A2F60253B00F86455 /* Model_GApp.swift */,
 				B15A253C2F60253B00F86455 /* ContentView.swift */,
+				B15A25702F602C6A00F86455 /* CongratsView.swift */,
+				B15A256A2F60299900F86455 /* SplashScreenView.swift */,
+				B15A256C2F6029B400F86455 /* AmbientStoryView.swift */,
+				B15A256E2F6029E000F86455 /* DeciderView.swift */,
+				B15A25682F60298200F86455 /* LaunchScreenTest.storyboard */,
 				B15A253E2F60254100F86455 /* Assets.xcassets */,
 				B15A25402F60254100F86455 /* Preview Content */,
 			);
@@ -233,6 +248,7 @@
 			files = (
 				B15A25422F60254100F86455 /* Preview Assets.xcassets in Resources */,
 				B15A253F2F60254100F86455 /* Assets.xcassets in Resources */,
+				B15A25692F60298200F86455 /* LaunchScreenTest.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +274,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B15A253D2F60253B00F86455 /* ContentView.swift in Sources */,
+				B15A25712F602C6A00F86455 /* CongratsView.swift in Sources */,
+				B15A256D2F6029B400F86455 /* AmbientStoryView.swift in Sources */,
+				B15A256F2F6029E000F86455 /* DeciderView.swift in Sources */,
 				B15A253B2F60253B00F86455 /* Model_GApp.swift in Sources */,
+				B15A256B2F60299900F86455 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
