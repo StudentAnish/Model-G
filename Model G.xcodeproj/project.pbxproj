@@ -19,6 +19,11 @@
 		B15A256D2F6029B400F86455 /* AmbientStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A256C2F6029B400F86455 /* AmbientStoryView.swift */; };
 		B15A256F2F6029E000F86455 /* DeciderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A256E2F6029E000F86455 /* DeciderView.swift */; };
 		B15A25712F602C6A00F86455 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A25702F602C6A00F86455 /* CongratsView.swift */; };
+		B15A25782F64AF3000F86455 /* Rajdhani-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25732F64AF3000F86455 /* Rajdhani-SemiBold.ttf */; };
+		B15A25792F64AF3000F86455 /* Rajdhani-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25742F64AF3000F86455 /* Rajdhani-Bold.ttf */; };
+		B15A257A2F64AF3000F86455 /* Rajdhani-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25752F64AF3000F86455 /* Rajdhani-Light.ttf */; };
+		B15A257B2F64AF3000F86455 /* Rajdhani-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25762F64AF3000F86455 /* Rajdhani-Medium.ttf */; };
+		B15A257C2F64AF3000F86455 /* Rajdhani-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25772F64AF3000F86455 /* Rajdhani-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,12 @@
 		B15A256C2F6029B400F86455 /* AmbientStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientStoryView.swift; sourceTree = "<group>"; };
 		B15A256E2F6029E000F86455 /* DeciderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeciderView.swift; sourceTree = "<group>"; };
 		B15A25702F602C6A00F86455 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
+		B15A25732F64AF3000F86455 /* Rajdhani-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rajdhani-SemiBold.ttf"; path = "../../../../../../Downloads/Rajdhani/Rajdhani-SemiBold.ttf"; sourceTree = "<group>"; };
+		B15A25742F64AF3000F86455 /* Rajdhani-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rajdhani-Bold.ttf"; path = "../../../../../../Downloads/Rajdhani/Rajdhani-Bold.ttf"; sourceTree = "<group>"; };
+		B15A25752F64AF3000F86455 /* Rajdhani-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rajdhani-Light.ttf"; path = "../../../../../../Downloads/Rajdhani/Rajdhani-Light.ttf"; sourceTree = "<group>"; };
+		B15A25762F64AF3000F86455 /* Rajdhani-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rajdhani-Medium.ttf"; path = "../../../../../../Downloads/Rajdhani/Rajdhani-Medium.ttf"; sourceTree = "<group>"; };
+		B15A25772F64AF3000F86455 /* Rajdhani-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rajdhani-Regular.ttf"; path = "../../../../../../Downloads/Rajdhani/Rajdhani-Regular.ttf"; sourceTree = "<group>"; };
+		B15A257D2F64B14B00F86455 /* Model-G-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Model-G-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +101,7 @@
 				B15A25382F60253B00F86455 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		B15A25382F60253B00F86455 /* Products */ = {
 			isa = PBXGroup;
@@ -104,6 +116,7 @@
 		B15A25392F60253B00F86455 /* Model G */ = {
 			isa = PBXGroup;
 			children = (
+				B15A257D2F64B14B00F86455 /* Model-G-Info.plist */,
 				B15A253A2F60253B00F86455 /* Model_GApp.swift */,
 				B15A253C2F60253B00F86455 /* ContentView.swift */,
 				B15A25702F602C6A00F86455 /* CongratsView.swift */,
@@ -112,6 +125,7 @@
 				B15A256E2F6029E000F86455 /* DeciderView.swift */,
 				B15A25682F60298200F86455 /* LaunchScreenTest.storyboard */,
 				B15A253E2F60254100F86455 /* Assets.xcassets */,
+				B15A25722F64AEDA00F86455 /* Fonts */,
 				B15A25402F60254100F86455 /* Preview Content */,
 			);
 			path = "Model G";
@@ -140,6 +154,18 @@
 				B15A25572F60254100F86455 /* Model_GUITestsLaunchTests.swift */,
 			);
 			path = "Model GUITests";
+			sourceTree = "<group>";
+		};
+		B15A25722F64AEDA00F86455 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B15A25752F64AF3000F86455 /* Rajdhani-Light.ttf */,
+				B15A25772F64AF3000F86455 /* Rajdhani-Regular.ttf */,
+				B15A25762F64AF3000F86455 /* Rajdhani-Medium.ttf */,
+				B15A25732F64AF3000F86455 /* Rajdhani-SemiBold.ttf */,
+				B15A25742F64AF3000F86455 /* Rajdhani-Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,9 +272,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15A257C2F64AF3000F86455 /* Rajdhani-Regular.ttf in Resources */,
 				B15A25422F60254100F86455 /* Preview Assets.xcassets in Resources */,
 				B15A253F2F60254100F86455 /* Assets.xcassets in Resources */,
+				B15A257A2F64AF3000F86455 /* Rajdhani-Light.ttf in Resources */,
+				B15A25782F64AF3000F86455 /* Rajdhani-SemiBold.ttf in Resources */,
+				B15A257B2F64AF3000F86455 /* Rajdhani-Medium.ttf in Resources */,
 				B15A25692F60298200F86455 /* LaunchScreenTest.storyboard in Resources */,
+				B15A25792F64AF3000F86455 /* Rajdhani-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +471,7 @@
 				DEVELOPMENT_TEAM = 25NDG6QQ75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Model-G-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -469,6 +501,7 @@
 				DEVELOPMENT_TEAM = 25NDG6QQ75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Model-G-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

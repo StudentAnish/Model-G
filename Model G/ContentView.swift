@@ -36,7 +36,7 @@ struct ContentView: View {
                 .shadow(color: .primary, radius: 10)
             
             Text("Level 3")
-                .font(.title)
+                .font(.custom("Rajdhani-Bold", size: 40))
                 .padding(.bottom, 100)
             
             List($missions, editActions: .move){$mission in
@@ -59,6 +59,7 @@ struct Top3MissionRowView: View {
     var body: some View{
         HStack{
             TextField("enter your mission", text: $mission.name)
+                //.font(.custom("Rajdhani-Medium", size: 18))
                 .lineLimit(2)
         
        
