@@ -77,7 +77,9 @@ struct Top3MissionRowView: View {
         .background(Color(.systemBackground)).cornerRadius(100)
         .shadow(color: .cyan, radius: (mission.inPlay ? 5 : 0) )
         .overlay(
-            RoundedRectangle(cornerRadius: 1000).stroke(Color.cyan, lineWidth: (mission.inPlay ? 2 : 1.5)))
+            RoundedRectangle(cornerRadius: 1000)
+                .stroke((mission.inPlay ? .cyan : .secondary),
+                        lineWidth: (mission.inPlay ? 2 : 1.5)))
         
         
         .padding(.vertical, 5) //external padding

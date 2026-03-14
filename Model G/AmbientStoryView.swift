@@ -53,6 +53,7 @@ struct view0: View {
 struct view1: View {
     
     @State var pageNum: Int = 0
+    @State var showNexPage: Bool = false
     
     var body: some View {
         VStack{
@@ -68,7 +69,9 @@ struct view1: View {
             
             Button{
                 withAnimation{
-                    pageNum = (pageNum + 1) % 5
+                    if(pageNum < 4) { pageNum += 1 }
+                    else {showNexPage = true}
+                    
                 }
             } label: {
                 //Image(systemName: "arrow.up.right.square.fill")
@@ -82,7 +85,11 @@ struct view1: View {
             //.shadow(radius: 0)
             .font(.system(size: 50))
             .padding(.vertical, 10)
+            .navigationDestination(isPresented: $showNexPage){
+                ContentView()
+            }
             
+//            NavigationLink(destination: ContentView(), isActive: $showNexPage){}
             
 //            NavigationLink(destination: ContentView()){
 //                Image(systemName: "arrowshape.turn.up.right.fill")
@@ -92,7 +99,6 @@ struct view1: View {
             //Spacer()
         }
         .background(.black)
-        .frame(width: .infinity, height: .infinity)
         .navigationBarBackButtonHidden(true)
     }
 }
