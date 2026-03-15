@@ -18,6 +18,8 @@ struct Mission: Identifiable {
     private(set) var dateCreated: Date = .now
     
     var inPlay: Bool
+    
+    var done: Bool = false
 }
 
 //rename MainView?
@@ -28,26 +30,47 @@ struct ContentView: View {
      Mission(name: "", inPlay: true),
      Mission(name: "", inPlay: false)]
     
+    @State private var level: Int = 0
+    
+    var numCompletedMissions: Int {
+        missions.filter{ $0.done }.count
+    }
+    
     var body: some View {
         VStack(){
             
-            Text("🐙")
-                .font(.system(size: 200))
-                .shadow(color: .primary, radius: 10)
-            
-            Text("Level 3")
+            Text("Level \(level)")
                 .font(.custom("Rajdhani-Bold", size: 40))
-                .padding(.bottom, 100)
+                .padding(.bottom, 10)
+            
+            HStack{
+                ForEach(missions) { mission in
+                    Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
+                        .foregroundColor(mission.done ? .cyan : .primary)
+                }
+            }
             
             List($missions, editActions: .move){$mission in
                 Top3MissionRowView(mission: $mission, number: 1)
                     .listRowSeparator(.hidden)
+                    .swipeActions(edge: .leading){
+                        Button{
+                            mission.done.toggle()
+                        } label: {
+                            Label("Complete", systemImage: "checkmark")
+                                
+                        }
+                        .tint(.cyan)
+                    }
             }
             .listStyle(.plain)
+            
+            //Text(numCompletedMissions.description)
             
         }
         .padding()
         .navigationBarBackButtonHidden(true)
+
     }
 }
 
@@ -68,6 +91,7 @@ struct Top3MissionRowView: View {
                 .onTapGesture {
                     withAnimation{
                         mission.inPlay.toggle()
+                        //mission.done.toggle()
                     }
                 }
             
@@ -81,6 +105,7 @@ struct Top3MissionRowView: View {
                 .stroke((mission.inPlay ? .cyan : .secondary),
                         lineWidth: (mission.inPlay ? 2 : 1.5)))
         .padding(.vertical, 5) //external padding
+
     }
 }
 
@@ -96,4 +121,8 @@ struct ContentView_Previews: PreviewProvider {
  – when the contents of a struct is updated, a new copy of the struct is created and then saved in the old struct's place. If an array of these structs is also declared Published, then Published detects this change (as the copying behaviour changes the array, whereas an array of classes would not be changed as only the property would be updated) triggering the view to update
  – modifiying a property in an object (class) in an array does not update the array, whereas updating a property in a struct does update the array
  
+ 
+ //            Text("🐙")
+ //                .font(.system(size: 200))
+ //                .shadow(color: .primary, radius: 10)
  **/

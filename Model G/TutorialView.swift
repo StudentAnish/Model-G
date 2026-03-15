@@ -21,17 +21,17 @@ struct TutorialView: View {
                 VStack(alignment: .leading, spacing: 10){
                     HStack{
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.green)
+                            .foregroundColor(.cyan)
                         Text("write your 3 most important goals for today")
                     }
                     HStack{
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.green)
+                            .foregroundColor(.cyan)
                         Text("achieve them before midnight")
                     }
                     HStack{
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.green)
+                            .foregroundColor(.cyan)
                         Text("unlock the next page")
                     }
                 }
@@ -42,7 +42,8 @@ struct TutorialView: View {
                 
                 Button{ showHomePage = true}
                 label: {
-                    Text("PLAY")
+                    Text("P L A Y")
+                        //.font(.custom("Rajdhani-", size: 20))
                         .foregroundColor(.cyan)
                         .frame(maxWidth: .infinity)
                         .padding(20) //internal padding
