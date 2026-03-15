@@ -80,8 +80,6 @@ struct Top3MissionRowView: View {
             RoundedRectangle(cornerRadius: 1000)
                 .stroke((mission.inPlay ? .cyan : .secondary),
                         lineWidth: (mission.inPlay ? 2 : 1.5)))
-        
-        
         .padding(.vertical, 5) //external padding
     }
 }

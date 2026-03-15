@@ -10,45 +10,10 @@ import SwiftUI
 struct AmbientStoryView: View {
     var body: some View {
         view1()
+//        ImageCarouselView()
     }
 }
 
-struct view0: View {
-    
-    @State var pageNum: Int = 0
-    
-    var body: some View {
-        ZStack{
-            Image("page-\(pageNum)")
-                .resizable()
-//                .scaledToFit()
-                .scaledToFill()
-                //.aspectRatio(contentMode: .fit)
-            
-            VStack(alignment: .center){
-                Spacer()
-                
-                HStack{
-                    Spacer()
-                    Button{
-                        withAnimation{
-                            pageNum = (pageNum + 1) % 5
-                        }
-                    } label: {
-                        Image(systemName: "arrow.up.right.square.fill")
-                            
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundColor(.black)
-                    .shadow(radius: 0)
-                    .rotationEffect(Angle(degrees: 45))
-                    .font(.system(size: 50))
-                    Spacer()
-                }
-            }.padding(.bottom, 25)
-        }.ignoresSafeArea()
-    }
-}
 
 struct view1: View {
     
@@ -57,54 +22,94 @@ struct view1: View {
     
     var body: some View {
         VStack{
-//            Image(systemName: "square.split.diagonal.2x2")
             Image("page-\(pageNum)")
                 .resizable()
                 //.aspectRatio(contentMode: .fit)
                 .scaledToFill()
             
-            //Spacer()
-                
-            //Text("Story Text")
-            
+                            
             Button{
                 withAnimation{
                     if(pageNum < 4) { pageNum += 1 }
                     else {showNexPage = true}
-                    
                 }
             } label: {
-                //Image(systemName: "arrow.up.right.square.fill")
-                //Image(systemName: "arrowshape.turn.up.right.fill")
                 Image(systemName: "arrow.forward")
                     .scaleEffect(y: -1)
-                    
             }
             .buttonStyle(.plain)
             .foregroundColor(.white)
-            //.shadow(radius: 0)
             .font(.system(size: 50))
             .padding(.vertical, 10)
-            .navigationDestination(isPresented: $showNexPage){
-                ContentView()
-            }
+            .navigationDestination(isPresented: $showNexPage){ TutorialView() }
             
-//            NavigationLink(destination: ContentView(), isActive: $showNexPage){}
-            
-//            NavigationLink(destination: ContentView()){
-//                Image(systemName: "arrowshape.turn.up.right.fill")
-//                    .scaleEffect(y: -1)
-//            }
-            
-            //Spacer()
         }
         .background(.black)
         .navigationBarBackButtonHidden(true)
     }
 }
 
+
+struct ImageCarouselView: View {
+    let imageNames: [String] = ["page-0", "page-1", "page-2", "page-3", "page-4"] // Replace with your image asset names
+    
+    var body: some View {
+        TabView {
+            ForEach(imageNames, id: \.self) { imageName in
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .clipped()
+            }
+        }
+        //.frame(height: 300) // Set a frame for the TabView itself
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic)) // Enables horizontal paging with dots
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+    }
+}
+
+
 struct AmbientStoryView_Previews: PreviewProvider {
     static var previews: some View {
         AmbientStoryView()
     }
 }
+
+
+
+//struct view0: View {
+//
+//    @State var pageNum: Int = 0
+//
+//    var body: some View {
+//        ZStack{
+//            Image("page-\(pageNum)")
+//                .resizable()
+////                .scaledToFit()
+//                .scaledToFill()
+//                //.aspectRatio(contentMode: .fit)
+//
+//            VStack(alignment: .center){
+//                Spacer()
+//
+//                HStack{
+//                    //Spacer()
+//                    Button{
+//                        withAnimation{
+//                            pageNum = (pageNum + 1) % 5
+//                        }
+//                    } label: {
+//                        Image(systemName: "arrow.up.right.square.fill")
+//
+//                    }
+//                    .buttonStyle(.plain)
+//                    .foregroundColor(.black)
+//                    .shadow(radius: 0)
+//                    .rotationEffect(Angle(degrees: 45))
+//                    .font(.system(size: 50))
+//                    //Spacer()
+//                }
+//            }.padding(.bottom, 25)
+//        }.ignoresSafeArea()
+//    }
+//}

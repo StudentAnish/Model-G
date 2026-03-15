@@ -24,6 +24,7 @@
 		B15A257A2F64AF3000F86455 /* Rajdhani-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25752F64AF3000F86455 /* Rajdhani-Light.ttf */; };
 		B15A257B2F64AF3000F86455 /* Rajdhani-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25762F64AF3000F86455 /* Rajdhani-Medium.ttf */; };
 		B15A257C2F64AF3000F86455 /* Rajdhani-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15A25772F64AF3000F86455 /* Rajdhani-Regular.ttf */; };
+		B15A257F2F6729A700F86455 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15A257E2F6729A700F86455 /* TutorialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		B15A25762F64AF3000F86455 /* Rajdhani-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rajdhani-Medium.ttf"; path = "../../../../../../Downloads/Rajdhani/Rajdhani-Medium.ttf"; sourceTree = "<group>"; };
 		B15A25772F64AF3000F86455 /* Rajdhani-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rajdhani-Regular.ttf"; path = "../../../../../../Downloads/Rajdhani/Rajdhani-Regular.ttf"; sourceTree = "<group>"; };
 		B15A257D2F64B14B00F86455 /* Model-G-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Model-G-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B15A257E2F6729A700F86455 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,11 +120,12 @@
 			children = (
 				B15A257D2F64B14B00F86455 /* Model-G-Info.plist */,
 				B15A253A2F60253B00F86455 /* Model_GApp.swift */,
+				B15A256E2F6029E000F86455 /* DeciderView.swift */,
+				B15A256C2F6029B400F86455 /* AmbientStoryView.swift */,
+				B15A257E2F6729A700F86455 /* TutorialView.swift */,
 				B15A253C2F60253B00F86455 /* ContentView.swift */,
 				B15A25702F602C6A00F86455 /* CongratsView.swift */,
 				B15A256A2F60299900F86455 /* SplashScreenView.swift */,
-				B15A256C2F6029B400F86455 /* AmbientStoryView.swift */,
-				B15A256E2F6029E000F86455 /* DeciderView.swift */,
 				B15A25682F60298200F86455 /* LaunchScreenTest.storyboard */,
 				B15A253E2F60254100F86455 /* Assets.xcassets */,
 				B15A25722F64AEDA00F86455 /* Fonts */,
@@ -304,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15A257F2F6729A700F86455 /* TutorialView.swift in Sources */,
 				B15A253D2F60253B00F86455 /* ContentView.swift in Sources */,
 				B15A25712F602C6A00F86455 /* CongratsView.swift in Sources */,
 				B15A256D2F6029B400F86455 /* AmbientStoryView.swift in Sources */,

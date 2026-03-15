@@ -12,16 +12,18 @@ struct DeciderView: View {
         NavigationStack{
             VStack{
                 Text("xLyfe")
-                    .font(.system(size: 100))
-                    .padding(.bottom, 200)
-                //Text("presents")
+                    .font(.custom("Rajdhani-Bold", size: 100))
+                    //.padding(.bottom, 100)
                 
                 NavigationLink(destination: AmbientStoryView()){
-                    Text("Initiate Onboarding").padding()
+                    //Text("Initiate Onboarding").padding(.vertical)
+                    Text("Onboarding").padding(.vertical)
                         
                 }
                 NavigationLink(destination: ContentView()){
-                    Text("Go to Main Page").padding()
+                    Text("Home")
+                    //Text("Go to Main Page")
+                    //Text("Shortcut to Main")
                 }
             }.padding()
         }
