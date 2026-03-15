@@ -42,17 +42,26 @@ struct ContentView: View {
     var body: some View {
         VStack(){
             
-            Text("Level \(level)")
-                .font(.custom("Rajdhani-Bold", size: 40))
-                .padding(.bottom, 10)
-            
-            HStack{
-                ForEach(missions) { mission in
-                    Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
-                        .foregroundColor(mission.done ? .cyan : .primary)
+            MidnightCountdownView().overlay{
+                VStack{
+                    Text("Level \(level)")
+                        .font(.custom("Rajdhani-Bold", size: 40))
+                        .padding(.bottom, 10)
+                    
+                    HStack{
+                        ForEach(missions) { mission in
+                            Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
+                                .foregroundColor(mission.done ? .cyan : .primary)
+                        }
+                    }
                 }
             }
+            .padding(.vertical, 50)
             
+//            ProgressView(value: 0.4)
+//                .progressViewStyle(.circular)
+            
+
             List($missions, editActions: .move){$mission in
                 Top3MissionRowView(mission: $mission, number: 1)
                     .listRowSeparator(.hidden)
@@ -71,9 +80,6 @@ struct ContentView: View {
                     }
             }
             .listStyle(.plain)
-            
-            
-            //Text(numCompletedMissions.description)
             
         }
         .padding()
