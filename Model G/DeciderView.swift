@@ -15,15 +15,20 @@ struct DeciderView: View {
                     .font(.custom("Rajdhani-Bold", size: 100))
                     //.padding(.bottom, 100)
                 
-                NavigationLink(destination: AmbientStoryView()){
+                NavigationLink(destination: AmbientStoryView(story: 0)){
                     //Text("Initiate Onboarding").padding(.vertical)
                     Text("Onboarding").padding(.vertical)
                         
                 }
-                NavigationLink(destination: ContentView()){
+                NavigationLink(destination: ContentView(level: 0)){
                     Text("Home")
                     //Text("Go to Main Page")
                     //Text("Shortcut to Main")
+                }
+                NavigationLink(destination: AmbientStoryView(story: 1)){
+                    //Text("Initiate Onboarding").padding(.vertical)
+                    Text("Complete").padding(.vertical)
+                        
                 }
             }.padding()
         }

@@ -56,9 +56,9 @@ struct TutorialView: View {
                 }
                 .padding(.horizontal, 40)
                 .padding(.vertical, 10)
-                .navigationDestination(isPresented: $showHomePage){ ContentView() }
+                .navigationDestination(isPresented: $showHomePage){ ContentView(level: 0) }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

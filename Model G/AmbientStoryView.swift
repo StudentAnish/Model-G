@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct AmbientStoryView: View {
+    
+    @State var story: Int
+    
     var body: some View {
-        view1()
+        if(story == 0){
+            view0()
+        } else if (story == 1){
+            view1()
+        }
 //        ImageCarouselView()
     }
 }
 
-
-struct view1: View {
+struct view0: View {
     
     @State var pageNum: Int = 0
     @State var showNexPage: Bool = false
@@ -49,6 +55,40 @@ struct view1: View {
     }
 }
 
+struct view1: View {
+    
+    @State var pageNum: Int = 5
+    @State var showNexPage: Bool = false
+    
+    var body: some View {
+        VStack{
+            Image("page-\(pageNum)")
+                .resizable()
+                //.aspectRatio(contentMode: .fit)
+                .scaledToFill()
+            
+                            
+            Button{
+                withAnimation{
+                    if(pageNum < 7) { pageNum += 1 }
+                    else {showNexPage = true}
+                }
+            } label: {
+                Image(systemName: "arrow.forward")
+                    .scaleEffect(y: -1)
+            }
+            .buttonStyle(.plain)
+            .foregroundColor(.white)
+            .font(.system(size: 50))
+            .padding(.vertical, 10)
+            .navigationDestination(isPresented: $showNexPage){ ContentView(level: 1) }
+            
+        }
+        .background(.black)
+        .navigationBarBackButtonHidden(true)
+    }
+}
+
 
 struct ImageCarouselView: View {
     let imageNames: [String] = ["page-0", "page-1", "page-2", "page-3", "page-4"] // Replace with your image asset names
@@ -71,7 +111,8 @@ struct ImageCarouselView: View {
 
 struct AmbientStoryView_Previews: PreviewProvider {
     static var previews: some View {
-        AmbientStoryView()
+        AmbientStoryView(story: 0)
+        AmbientStoryView(story: 1)
     }
 }
 

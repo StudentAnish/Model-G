@@ -8,12 +8,44 @@
 import SwiftUI
 
 struct CongratsView: View {
+    
+    @State private var showStory: Bool = false
+    
     var body: some View {
-        VStack (spacing: 100){
-            Text("🎉").font(.system(size: 100))
-            Text("Congratulations")
-            Text("You've now made it to: ") + Text("Level 2").underline()
+        ZStack{
+            VStack (){
+                Text("🎉").font(.system(size: 100))
+                Text("Congratulations!")
+                    .font(.custom("Rajdhani-Bold", size: 50))
+                    .padding(.bottom, 30)
+                
+                Text("You've achieved Level 1")
+                    .font(.custom("Rajdhani-Bold", size: 25))
+                //Text("Level 1")
+                
+            }
             
+            VStack{
+                Spacer()
+                
+                Button{ showStory = true}
+                label: {
+                    Text("Unlock Story")
+                        //.font(.custom("Rajdhani-", size: 20))
+                        .foregroundColor(.cyan)
+                        .frame(maxWidth: .infinity)
+                        .padding(20) //internal padding
+                        .background(Color(.systemBackground)).cornerRadius(100)
+                        .shadow(color: .cyan, radius: 5)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 1000)
+                                .stroke(.cyan, lineWidth: 2)
+                        )
+                }
+                .padding(.horizontal, 40)
+                .padding(.vertical, 10)
+                .navigationDestination(isPresented: $showStory){ AmbientStoryView(story: 1) }
+            }
         }
     }
 }

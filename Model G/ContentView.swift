@@ -30,11 +30,14 @@ struct ContentView: View {
      Mission(name: "", inPlay: true),
      Mission(name: "", inPlay: false)]
     
-    @State private var level: Int = 0
+//    @State private var level: Int = 0
+    @State var level: Int
     
     var numCompletedMissions: Int {
         missions.filter{ $0.done }.count
     }
+    
+    @State private var showCongrats: Bool = false
     
     var body: some View {
         VStack(){
@@ -56,6 +59,10 @@ struct ContentView: View {
                     .swipeActions(edge: .leading){
                         Button{
                             mission.done.toggle()
+                            if(numCompletedMissions == 3){
+                                level += 1
+                                showCongrats = true
+                            }
                         } label: {
                             Label("Complete", systemImage: "checkmark")
                                 
@@ -65,11 +72,13 @@ struct ContentView: View {
             }
             .listStyle(.plain)
             
+            
             //Text(numCompletedMissions.description)
             
         }
         .padding()
         .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $showCongrats){CongratsView()}
 
     }
 }
@@ -111,7 +120,7 @@ struct Top3MissionRowView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(level: 0)
     }
 }
 
