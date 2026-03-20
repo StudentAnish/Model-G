@@ -9,12 +9,37 @@ import SwiftUI
 
 struct CircleProgressViewTest: View {
     var body: some View {
-        CircularCountdownTimer()
-        MidnightCountdownView()
+        //CircularCountdownTimer_test()
+        //MidnightCountdownView_test()
+        CircularCountdown()
     }
 }
 
-struct CircularCountdownTimer: View {
+struct CircularCountdown: View {
+    
+    private let size: CGFloat = 300
+    @State private var trim = 0.0
+    
+    var body: some View {
+        VStack{
+            ZStack{
+                Circle()
+                    .stroke(.secondary.opacity(0.2), lineWidth: 20)
+                
+                Circle()
+                    .trim(from: 0, to: trim)
+                    .stroke(.cyan, lineWidth: 20)
+            }
+            .frame(width: size, height: size)
+            
+            Slider(value: $trim, in: 0...1)
+                .padding()
+            Text(trim.description)
+        }
+    }
+}
+
+struct CircularCountdownTimer_test: View {
     
     
     // Define your 30-second window
@@ -56,7 +81,7 @@ struct CircularCountdownTimer: View {
 }
 
 
-struct MidnightCountdownView: View {
+struct MidnightCountdownView_test: View {
     // Calculate the range once when the view appears
     @State private var range: ClosedRange<Date>?
 

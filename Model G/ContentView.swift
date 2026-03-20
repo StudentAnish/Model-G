@@ -33,21 +33,21 @@ struct ContentView: View {
 //    @State private var level: Int = 0
     @State var level: Int
     
-    var numCompletedMissions: Int {
-        missions.filter{ $0.done }.count
-    }
+    var numCompletedMissions: Int {missions.filter{ $0.done }.count}
     
     @State private var showCongrats: Bool = false
     
     var body: some View {
         VStack(){
             
-            MidnightCountdownView().overlay{
+            CircularCountdown()
+//            MidnightCountdownView_test()
+                .overlay{
                 VStack{
                     Text("Level \(level)")
                         .font(.custom("Rajdhani-Bold", size: 40))
                         .padding(.bottom, 10)
-                    
+
                     HStack{
                         ForEach(missions) { mission in
                             Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
@@ -56,7 +56,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .padding(.vertical, 50)
+            .padding(.vertical, 60)
             
 //            ProgressView(value: 0.4)
 //                .progressViewStyle(.circular)
