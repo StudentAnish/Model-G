@@ -19,22 +19,58 @@ struct CircularCountdown: View {
     
     private let size: CGFloat = 300
     @State private var trim = 0.0
+    @State private var startTimer = false
+    @State private var timerRange = Date()...Date().addingTimeInterval(10)
+    
     
     var body: some View {
         VStack{
             ZStack{
-                Circle()
+                
+                Circle() //background circle
                     .stroke(.secondary.opacity(0.2), lineWidth: 20)
                 
-                Circle()
-                    .trim(from: 0, to: trim)
-                    .stroke(.cyan, lineWidth: 20)
+                if(startTimer){
+                    TimelineView(.animation(minimumInterval: 1.0, paused: false)){ context in
+                    
+//                    TimelineView(.periodic(from: Date(), by: 1)){ context in
+                    
+                        let _ = progress(currentDate: context.date)
+                        Circle() //foreground circle
+                            .trim(from: 0, to: trim)
+                            .stroke(.cyan, lineWidth: 20)
+                            .rotationEffect(Angle(degrees: -90))
+                    }
+                }
+                
+                if(!startTimer){
+                    Button("Start"){
+                        startTimer = true
+                        timerRange = Date()...Date().addingTimeInterval(10)
+                    }
+                    
+                }
             }
             .frame(width: size, height: size)
             
-            Slider(value: $trim, in: 0...1)
-                .padding()
+            Slider(value: $trim, in: 0...1).padding()
             Text(trim.description)
+            
+            
+        }
+    }
+    
+    func progress(currentDate: Date){
+        let lowerbound = (currentDate.timeIntervalSince(timerRange.lowerBound))
+        
+        let upperbound = (timerRange.upperBound.timeIntervalSince(timerRange.lowerBound))
+        
+        trim = lowerbound / upperbound
+        print("lowerbound: \(lowerbound) \t upperbound: \(upperbound) \t trim: \(trim)")
+        
+        if(trim > 1){
+            startTimer = false
+            trim = 0
         }
     }
 }

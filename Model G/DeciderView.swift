@@ -22,6 +22,9 @@ struct DeciderView: View {
                     //.padding(.bottom, 100)
                     .navigationDestination(isPresented: $showAmbientStory){ AmbientStoryView(story: 0) }
                 
+                ProgressView(value: 0.5)
+                    .foregroundColor(.cyan)
+                
 //                NavigationLink(destination: AmbientStoryView(story: 0)){
 //                    //Text("Initiate Onboarding").padding(.vertical)
 //                    Text("Begin").padding(.vertical)
