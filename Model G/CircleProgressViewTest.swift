@@ -11,7 +11,8 @@ struct CircleProgressViewTest: View {
     var body: some View {
         //CircularCountdownTimer_test()
         //MidnightCountdownView_test()
-        CircularCountdown()
+        //CircularCountdown()
+        CountdownTimer()
     }
 }
 
@@ -27,6 +28,38 @@ struct CircleProgressViewTest: View {
  }
  
  */
+
+
+struct CountdownTimer: View {
+    
+    @State var startTime = Date.now
+    @State var timerRunning = false
+    let max = 10
+    
+    var body: some View{
+        
+        ZStack{
+            if(!timerRunning){
+                Button("Play"){
+                    timerRunning = true
+                    startTime = Date.now
+                }
+            } else {
+                
+                TimelineView(.periodic(from: .now, by: 0.1)){ context in
+                    let elapsed = context.date.timeIntervalSince(startTime)
+                    let remaining = Swift.max(10 - elapsed, 0)
+                    
+                    Text(remaining.rounded().description)
+                        .onChange(of: remaining){ newValue in
+                            if(newValue <= 0){ timerRunning = false}
+                        }
+                }
+            }
+        }
+    }
+}
+
 
 struct CircularCountdown: View {
     
