@@ -15,6 +15,19 @@ struct CircleProgressViewTest: View {
     }
 }
 
+/*
+ TimelineView(.periodic(from: .now, by: 1.0)) { context in
+     let elapsed = Int(context.date.timeIntervalSince(startTime))
+     let remaining = max(0, 10 - elapsed)
+
+     Text("\(remaining)")
+         .onChange(of: remaining) { newValue in
+             if newValue == 0 { /* Trigger final action */ }
+         }
+ }
+ 
+ */
+
 struct CircularCountdown: View {
     
     private let size: CGFloat = 300
@@ -31,20 +44,30 @@ struct CircularCountdown: View {
                     .stroke(.secondary.opacity(0.2), lineWidth: 20)
                 
                 if(startTimer){
-                    TimelineView(.animation(minimumInterval: 1.0, paused: false)){ context in
-                    
-//                    TimelineView(.periodic(from: Date(), by: 1)){ context in
-                    
-                        let _ = progress(currentDate: context.date)
-                        Circle() //foreground circle
-                            .trim(from: 0, to: trim)
-                            .stroke(.cyan, lineWidth: 20)
-                            .rotationEffect(Angle(degrees: -90))
+                    TimelineView(.periodic(from: .now, by: 0.1)){ context in
+                        
+                        let lowerbound = (context.date.timeIntervalSince(timerRange.lowerBound))
+                        
+                        let upperbound = (timerRange.upperBound.timeIntervalSince(timerRange.lowerBound))
+                        
+                        let remaining = upperbound - lowerbound
+                        
+//                        if(remaining > 0){
+                            
+                            Circle() //foreground circle
+                                .trim(from: 0, to: progress(currentDate: context.date))
+                                .stroke(.cyan, style: StrokeStyle( lineWidth: 20, lineCap: .round))
+                                .rotationEffect(Angle(degrees: -90))
+//                        }
+                            
+                        
+                        
                     }
+                    Text(timerInterval: timerRange, countsDown: true)
                 }
                 
                 if(!startTimer){
-                    Button("Start"){
+                    Button("Play"){
                         startTimer = true
                         timerRange = Date()...Date().addingTimeInterval(10)
                     }
@@ -60,18 +83,20 @@ struct CircularCountdown: View {
         }
     }
     
-    func progress(currentDate: Date){
+    func progress(currentDate: Date) -> Double{
         let lowerbound = (currentDate.timeIntervalSince(timerRange.lowerBound))
         
         let upperbound = (timerRange.upperBound.timeIntervalSince(timerRange.lowerBound))
         
-        trim = lowerbound / upperbound
-        print("lowerbound: \(lowerbound) \t upperbound: \(upperbound) \t trim: \(trim)")
+        let progress = lowerbound / upperbound
+        print("lowerbound: \(lowerbound) \t upperbound: \(upperbound) \t trim: \(progress)")
         
-        if(trim > 1){
-            startTimer = false
-            trim = 0
-        }
+//        if(progress > 1.05){
+//            //startTimer = false
+//            progress = 0
+//        }
+        
+        return min(progress, 1)
     }
 }
 
