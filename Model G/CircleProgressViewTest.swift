@@ -31,11 +31,11 @@ struct CircleProgressViewTest: View {
 struct CircleMidnightTimer: View { //goal: < 48 lines of code
     
     private let size: CGFloat = 300
-    //var midnight: Date //figure out how to do that
-    @State var timerRange: ClosedRange<Date>?
     
     @State var showTimer = false
     @State var showPlayButton = true
+    
+    @State var timerRange: ClosedRange<Date>?
     
     var body: some View {
         ZStack{
@@ -43,26 +43,31 @@ struct CircleMidnightTimer: View { //goal: < 48 lines of code
             if showPlayButton {
                 VStack{
                     Button("Play"){
+                        //finds today's midnight, then adds 1 day to get tomorrow's midnight
+                        let midnight = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
                         showTimer = true
-                        timerRange = Date()...Date().addingTimeInterval(3)
+                        timerRange = Date()...midnight
                         showPlayButton = false
                     }.font(.custom("Rajdhani-Bold", size: 50))
                     Button("Reset"){showTimer = false}
                 }
             }
 
-            //background circle
+            /* Background Circle */
             Circle().stroke(.secondary.opacity(0.2), lineWidth: 20)
             
-            if showTimer {
+            /* Progress Ring */
+            if showTimer, let range = timerRange {
                 
                 TimelineView(.periodic(from: .now, by: 0.1)){ context in
                     
-                    let progress = progress(context.date, timerRange)
+                    let progress = progress(context.date, range)
                     
                     Circle() //foreground circle
                         .trim(from: 0, to: progress)
-                        .stroke(.primary,
+                        .stroke(LinearGradient(colors: [.primary, .cyan],
+                                               startPoint: .top,
+                                               endPoint: .bottom),
                                 style: StrokeStyle(lineWidth: 20, lineCap: .round))
                         .rotationEffect(Angle(degrees: -90))
                         .onChange(of: progress){ newValue in
@@ -70,42 +75,28 @@ struct CircleMidnightTimer: View { //goal: < 48 lines of code
                         }
                 }
                 
-                VStack{
+                /* Number Timer Countdown */
+                VStack {
                     Spacer()
-                    Text(timerInterval: timerRange!)
+                    Text(timerInterval: range)
                         .font(.system(.body, design: .monospaced))
                         .fontWeight(.bold)
                         .padding(.bottom, 30)
                 }
             }
-
-            
         }.frame(width: size, height: size)
     }
     
-    private func progress(_ currentTime: Date, _ timerRange: ClosedRange<Date>?) -> Double{
-        let elapsedTime = currentTime.timeIntervalSince(timerRange!.lowerBound)
-        let totalTime = (timerRange?.upperBound.timeIntervalSince(timerRange!.lowerBound))!
+    private func progress(_ currentTime: Date, _ timerRange: ClosedRange<Date>) -> Double{
+        let elapsedTime = currentTime.timeIntervalSince(timerRange.lowerBound)
+        let totalTime = (timerRange.upperBound.timeIntervalSince(timerRange.lowerBound))
         let progress = elapsedTime / totalTime
         
         return min(progress, 1)
     }
 }
 
-/*
- TimelineView(.periodic(from: .now, by: 1.0)) { context in
-     let elapsed = Int(context.date.timeIntervalSince(startTime))
-     let remaining = max(0, 10 - elapsed)
-
-     Text("\(remaining)")
-         .onChange(of: remaining) { newValue in
-             if newValue == 0 { /* Trigger final action */ }
-         }
- }
- 
- */
-
-
+//Starting a timer using a button
 struct CountdownTimer: View {
     
     @State var startTime = Date.now
@@ -136,7 +127,7 @@ struct CountdownTimer: View {
     }
 }
 
-
+//My first non Ai attempt at creating a timer - it worked!
 struct CircularCountdown: View {
     
     private let size: CGFloat = 300
@@ -209,6 +200,7 @@ struct CircularCountdown: View {
     }
 }
 
+//Gemini countdown
 struct CircularCountdownTimer_test: View {
     
     
@@ -250,7 +242,7 @@ struct CircularCountdownTimer_test: View {
     }
 }
 
-
+//Gemini Midnight countdown
 struct MidnightCountdownView_test: View {
     // Calculate the range once when the view appears
     @State private var range: ClosedRange<Date>?
