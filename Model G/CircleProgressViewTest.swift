@@ -8,11 +8,87 @@
 import SwiftUI
 
 struct CircleProgressViewTest: View {
+    
+
+    
     var body: some View {
         //CircularCountdownTimer_test()
         //MidnightCountdownView_test()
         //CircularCountdown()
-        CountdownTimer()
+//        CountdownTimer()
+
+        CircleMidnightTimer()
+    }
+}
+
+// Midnight Circle Countdown Timer
+// Circular Countdown Timer
+// Circle Timer to Midnight
+// Midnight Circle Timer
+// Midnight Circle Countdown
+// Circle Midnight Timer
+
+struct CircleMidnightTimer: View { //goal: < 48 lines of code
+    
+    private let size: CGFloat = 300
+    //var midnight: Date //figure out how to do that
+    @State var timerRange: ClosedRange<Date>?
+    
+    @State var showTimer = false
+    @State var showPlayButton = true
+    
+    var body: some View {
+        ZStack{
+
+            if showPlayButton {
+                VStack{
+                    Button("Play"){
+                        showTimer = true
+                        timerRange = Date()...Date().addingTimeInterval(3)
+                        showPlayButton = false
+                    }.font(.custom("Rajdhani-Bold", size: 50))
+                    Button("Reset"){showTimer = false}
+                }
+            }
+
+            //background circle
+            Circle().stroke(.secondary.opacity(0.2), lineWidth: 20)
+            
+            if showTimer {
+                
+                TimelineView(.periodic(from: .now, by: 0.1)){ context in
+                    
+                    let progress = progress(context.date, timerRange)
+                    
+                    Circle() //foreground circle
+                        .trim(from: 0, to: progress)
+                        .stroke(.primary,
+                                style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                        .rotationEffect(Angle(degrees: -90))
+                        .onChange(of: progress){ newValue in
+                            if(newValue == 1){showPlayButton = true}
+                        }
+                }
+                
+                VStack{
+                    Spacer()
+                    Text(timerInterval: timerRange!)
+                        .font(.system(.body, design: .monospaced))
+                        .fontWeight(.bold)
+                        .padding(.bottom, 30)
+                }
+            }
+
+            
+        }.frame(width: size, height: size)
+    }
+    
+    private func progress(_ currentTime: Date, _ timerRange: ClosedRange<Date>?) -> Double{
+        let elapsedTime = currentTime.timeIntervalSince(timerRange!.lowerBound)
+        let totalTime = (timerRange?.upperBound.timeIntervalSince(timerRange!.lowerBound))!
+        let progress = elapsedTime / totalTime
+        
+        return min(progress, 1)
     }
 }
 

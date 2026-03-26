@@ -40,8 +40,8 @@ struct ContentView: View {
     var body: some View {
         VStack(){
             
-            CircularCountdown()
-//            MidnightCountdownView_test()
+//            CircularCountdown()
+            MidnightCountdownView_test()
                 .overlay{
                 VStack{
                     Text("Level \(level)")
