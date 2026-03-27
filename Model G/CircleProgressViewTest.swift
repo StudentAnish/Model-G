@@ -14,7 +14,7 @@ struct CircleProgressViewTest: View {
     var body: some View {
         //CircularCountdownTimer_test()
         //MidnightCountdownView_test()
-        //CircularCountdown()
+//        CircularCountdown()
 //        CountdownTimer()
 
         CircleMidnightTimer()
@@ -46,7 +46,8 @@ struct CircleMidnightTimer: View { //goal: < 48 lines of code
                         //finds today's midnight, then adds 1 day to get tomorrow's midnight
                         let midnight = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
                         showTimer = true
-                        timerRange = Date()...midnight
+                        //timerRange = Date()...midnight
+                        timerRange = Date()...Date().addingTimeInterval(20)
                         showPlayButton = false
                     }.font(.custom("Rajdhani-Bold", size: 50))
                     Button("Reset"){showTimer = false}

@@ -40,27 +40,22 @@ struct ContentView: View {
     var body: some View {
         VStack(){
             
-//            CircularCountdown()
-            MidnightCountdownView_test()
+            //MidnightCountdownView_test()
+            RingMidnightTimer()
                 .overlay{
-                VStack{
-                    Text("Level \(level)")
-                        .font(.custom("Rajdhani-Bold", size: 40))
-                        .padding(.bottom, 10)
+                    VStack{
+                        Text("Level \(level)")
+                            .font(.custom("Rajdhani-Bold", size: 40))
+                            .padding(.bottom, 10)
 
-                    HStack{
-                        ForEach(missions) { mission in
-                            Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
-                                .foregroundColor(mission.done ? .cyan : .primary)
+                        HStack{
+                            ForEach(missions) { mission in
+                                Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
+                                    .foregroundColor(mission.done ? .cyan : .primary)
+                            }
                         }
                     }
-                }
-            }
-            .padding(.vertical, 60)
-            
-//            ProgressView(value: 0.4)
-//                .progressViewStyle(.circular)
-            
+                }.padding(.vertical, 60)
 
             List($missions, editActions: .move){$mission in
                 Top3MissionRowView(mission: $mission, number: 1)
@@ -74,21 +69,96 @@ struct ContentView: View {
                             }
                         } label: {
                             Label("Complete", systemImage: "checkmark")
-                                
                         }
                         .tint(.cyan)
                     }
             }
             .listStyle(.plain)
-            
         }
         .padding()
         .navigationBarBackButtonHidden(true)
         .navigationDestination(isPresented: $showCongrats){CongratsView()}
-
     }
 }
 
+
+
+                            /* Component Views */
+
+struct RingMidnightTimer: View { //goal: < 48 lines of code
+    
+    private let size: CGFloat = 300
+    
+    @State var showTimer = false
+    @State var showPlayButton = true
+    
+    @State var timerRange: ClosedRange<Date>?
+    
+    var body: some View {
+        ZStack{
+
+            if showPlayButton {
+                VStack{
+                    Button("Play"){
+                        //finds today's midnight, then adds 1 day to get tomorrow's midnight
+                        let midnight = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
+                        showTimer = true
+                        timerRange = Date()...midnight
+//                        timerRange = Date()...Date().addingTimeInterval(20)
+                        showPlayButton = false
+                    }.font(.custom("Rajdhani-Bold", size: 50))
+                    Button("Reset"){showTimer = false}
+                }
+            }
+
+            /* Background Circle */
+            Circle().stroke(.secondary.opacity(0.2), lineWidth: 20)
+            
+            /* Progress Ring */
+            if showTimer, let range = timerRange {
+                
+                TimelineView(.periodic(from: .now, by: 0.01)){ context in
+                    
+                    let progress = progress(context.date, range)
+                    
+                    Circle() //foreground circle
+                        .trim(from: 0, to: progress)
+                        .stroke(LinearGradient(colors: [.primary, .cyan],
+                                               startPoint: .top,
+                                               endPoint: .bottom),
+                                style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                        .rotationEffect(Angle(degrees: -90))
+                        .onChange(of: progress){ newValue in
+                            if(newValue == 1){showPlayButton = false}
+                        }
+                }
+                
+                /* Number Timer Countdown */
+                VStack {
+                    Spacer()
+                    Text(timerInterval: range)
+                        .font(.system(.body, design: .monospaced))
+                        .fontWeight(.bold)
+                        .padding(.bottom, 30)
+                }
+            }
+        }.frame(width: size, height: size)
+    }
+    
+    private func progress(_ currentTime: Date, _ timerRange: ClosedRange<Date>) -> Double{
+        let elapsedTime = currentTime.timeIntervalSince(timerRange.lowerBound)
+        let totalTime = (timerRange.upperBound.timeIntervalSince(timerRange.lowerBound))
+        let progress = elapsedTime / totalTime
+        
+        return min(progress, 1)
+    }
+}
+
+
+
+/**
+ * Top 3 Mission Row Views
+ */
 struct Top3MissionRowView: View {
     
     @Binding var mission: Mission

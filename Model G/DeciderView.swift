@@ -10,6 +10,7 @@ import SwiftUI
 struct DeciderView: View {
     
     @State private var showAmbientStory: Bool = false
+    @State private var showHomePage: Bool = false
     
     var body: some View {
         NavigationStack{
@@ -24,6 +25,8 @@ struct DeciderView: View {
                 
                 ProgressView(value: 0.5)
                     .foregroundColor(.cyan)
+                    .navigationDestination(isPresented: $showHomePage){
+                        ContentView(level: 0) }
                 
 //                NavigationLink(destination: AmbientStoryView(story: 0)){
 //                    //Text("Initiate Onboarding").padding(.vertical)
