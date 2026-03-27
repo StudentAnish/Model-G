@@ -30,6 +30,11 @@ struct ContentView: View {
      Mission(name: "", inPlay: true),
      Mission(name: "", inPlay: false)]
     
+    
+    @State private var showTimer = false
+    @State private var showPlayButton = true
+    
+    
 //    @State private var level: Int = 0
     @State var level: Int
     
@@ -40,18 +45,21 @@ struct ContentView: View {
     var body: some View {
         VStack(){
             
-            //MidnightCountdownView_test()
-            RingMidnightTimer()
+            RingMidnightTimer(showPlayButton: $showPlayButton)
                 .overlay{
                     VStack{
-                        Text("Level \(level)")
-                            .font(.custom("Rajdhani-Bold", size: 40))
-                            .padding(.bottom, 10)
-
-                        HStack{
-                            ForEach(missions) { mission in
-                                Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
-                                    .foregroundColor(mission.done ? .cyan : .primary)
+                        
+                        if(showPlayButton){}
+                        else{
+                            Text("Level \(level)")
+                                .font(.custom("Rajdhani-Bold", size: 40))
+                                .padding(.bottom, 10)
+                            
+                            HStack{
+                                ForEach(missions) { mission in
+                                    Image(systemName: mission.done ? "checkmark.circle.fill" : "circle.dashed")
+                                        .foregroundColor(mission.done ? .cyan : .primary)
+                                }
                             }
                         }
                     }
@@ -90,7 +98,7 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
     private let size: CGFloat = 300
     
     @State var showTimer = false
-    @State var showPlayButton = true
+    @Binding var showPlayButton: Bool
     
     @State var timerRange: ClosedRange<Date>?
     
@@ -99,15 +107,15 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
 
             if showPlayButton {
                 VStack{
-                    Button("Play"){
+                    Button("Start Day"){
                         //finds today's midnight, then adds 1 day to get tomorrow's midnight
-                        let midnight = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
+//                        let midnight = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
                         showTimer = true
-                        timerRange = Date()...midnight
-//                        timerRange = Date()...Date().addingTimeInterval(20)
+//                        timerRange = Date()...midnight
+                        timerRange = Date()...Date().addingTimeInterval(10)
                         showPlayButton = false
                     }.font(.custom("Rajdhani-Bold", size: 50))
-                    Button("Reset"){showTimer = false}
+                    //Button("Reset"){showTimer = false}
                 }
             }
 
@@ -117,7 +125,7 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
             /* Progress Ring */
             if showTimer, let range = timerRange {
                 
-                TimelineView(.periodic(from: .now, by: 0.01)){ context in
+                TimelineView(.periodic(from: .now, by: 1.0)){ context in
                     
                     let progress = progress(context.date, range)
                     
@@ -129,7 +137,7 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
                                 style: StrokeStyle(lineWidth: 20, lineCap: .round))
                         .rotationEffect(Angle(degrees: -90))
                         .onChange(of: progress){ newValue in
-                            if(newValue == 1){showPlayButton = false}
+                            if(newValue == 1){showPlayButton = true}
                         }
                 }
                 
@@ -140,6 +148,10 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
                         .font(.system(.body, design: .monospaced))
                         .fontWeight(.bold)
                         .padding(.bottom, 30)
+                        .onTapGesture {
+                            showTimer = false
+                            showPlayButton = true
+                        }
                 }
             }
         }.frame(width: size, height: size)
