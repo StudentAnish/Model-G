@@ -107,7 +107,7 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
 
             if showPlayButton {
                 VStack{
-                    Button("Start Day"){
+                    Button("Start"){
                         //finds today's midnight, then adds 1 day to get tomorrow's midnight
 //                        let midnight = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
                         showTimer = true
@@ -115,6 +115,7 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
                         timerRange = Date()...Date().addingTimeInterval(20)
                         showPlayButton = false
                     }.font(.custom("Rajdhani-Bold", size: 50))
+                        .foregroundColor(.cyan)
                     //Button("Reset"){showTimer = false}
                 }
             }
