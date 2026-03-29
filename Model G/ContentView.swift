@@ -112,7 +112,7 @@ struct RingMidnightTimer: View { //goal: < 48 lines of code
 //                        let midnight = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: Date()))!
                         showTimer = true
 //                        timerRange = Date()...midnight
-                        timerRange = Date()...Date().addingTimeInterval(10)
+                        timerRange = Date()...Date().addingTimeInterval(20)
                         showPlayButton = false
                     }.font(.custom("Rajdhani-Bold", size: 50))
                     //Button("Reset"){showTimer = false}
